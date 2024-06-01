@@ -8,13 +8,15 @@
   <div class="chat-input-container">
     <div class="chat-input">
       <mat-form-field class="example-full-width">
-        <input matInput placeholder="Ta question..." [(ngModel)]="newMessage" (keyup.enter)="sendMessage()">
+        <mat-label>Ta question...</mat-label>
+        <input matInput placeholder="Type your question..." [(ngModel)]="newMessage" (keyup.enter)="sendMessage()" aria-label="Chat input">
+        <button class="input-btn" mat-icon-button matSuffix color="primary" (click)="sendMessage()" aria-label="Send message">
+          <mat-icon color="accent">send</mat-icon>
+        </button>
       </mat-form-field>
-      <button mat-icon-button color="primary" (click)="sendMessage()">
-        <mat-icon>send</mat-icon>
-      </button>
     </div>
   </div>
+  
 </div>
 
 

@@ -37,6 +37,7 @@ export class ChatComponent implements OnInit {
     if (this.newMessage.trim().length === 0) {
       return;
     }
+    this.hideSuggestions()
     // Send the message to the API
     this.chatService.sendMessage(this.newMessage).subscribe(botMessage => {
       this.messages.push(botMessage);
