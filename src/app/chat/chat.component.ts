@@ -7,12 +7,13 @@ import { Message } from '../message';
 import { MessageComponent } from "../message/message.component";
 import { MatGridListModule } from '@angular/material/grid-list';
 import { ChatService } from '../chat.service';
+import { SuggestionsComponent } from "../suggestions/suggestions.component";
 @Component({
     selector: 'app-chat',
     standalone: true,
     templateUrl: './chat.component.html',
     styleUrl: './chat.component.css',
-    imports: [FormsModule, CommonModule, MatInputModule, MatIconModule, MessageComponent,MatGridListModule]
+    imports: [FormsModule, CommonModule, MatInputModule, MatIconModule, MessageComponent, MatGridListModule, SuggestionsComponent]
 })
 export class ChatComponent implements OnInit {
 
@@ -28,6 +29,7 @@ export class ChatComponent implements OnInit {
   messages: Message[] = [
     {user: "Bot" ,text: "Bonjour , je suis FSTT Chat un chat debier a vous aider"}
   ];
+  showSuggestions: boolean = true;
   newMessage: string = '';
   username: string = 'User';  // In a real app, this should be dynamically set
 
@@ -41,5 +43,12 @@ export class ChatComponent implements OnInit {
     });
     this.messages.push({user: 'User', text: this.newMessage});
     this.newMessage = '';
+  }
+  hideSuggestions() {
+    this.showSuggestions = false;
+  }
+  handleQuestion(question: string) {
+    this.newMessage = question
+    this.sendMessage()
   }
   }

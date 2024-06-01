@@ -1,1 +1,7 @@
-<p>suggestions works!</p>
+<mat-chip-set aria-label="Questions communes">
+    <mat-chip *ngFor="let question of questions" (click)="onChipClick(question)">
+      {{ question }}
+    </mat-chip>
+  </mat-chip-set>
+  
+  

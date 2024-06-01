@@ -1,7 +1,8 @@
 <div class="chat-container">
   <div class="chat-window">
-    <div class="message" *ngFor="let message of messages">
+    <div class="message" *ngFor="let message of messages; let i = index">
       <app-message [message]="message"></app-message>
+      <app-suggestions *ngIf="i === 0 && showSuggestions" (question)="handleQuestion($event)" (click)="hideSuggestions()"></app-suggestions>
     </div>
   </div>
   <div class="chat-input-container">
