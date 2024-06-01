@@ -1,4 +1,5 @@
 <mat-toolbar color="primary">
+  <mat-toolbar-row>
     <div class="left-logo">
       <!-- Left Logo Here -->
       <img src="assets/fstt-L.png" alt="Left Logo">
@@ -7,9 +8,12 @@
       <!-- Middle Logo Here -->
       <img src="assets/iasd-L.png" alt="Middle Logo">
     </div>
-    <div class="right-logo">
-      <!-- Right Logo Here -->
-      <img src="assets/uae-L.png" alt="Right Logo">
+    <div class="navigation">
+      <!-- Navigation Menu Here -->
+      <button mat-button routerLink="/" routerLinkActive="active" >Home</button>
+      <button mat-button routerLink="/about" routerLinkActive="active" >About</button>
+      <button mat-button>Contact</button>
     </div>
-  </mat-toolbar>
-  
+
+  </mat-toolbar-row>
+</mat-toolbar>
