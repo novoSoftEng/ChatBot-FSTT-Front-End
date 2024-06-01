@@ -6,6 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { Message } from '../message';
 import { MessageComponent } from "../message/message.component";
 import { MatGridListModule } from '@angular/material/grid-list';
+import { ChatService } from '../chat.service';
 @Component({
     selector: 'app-chat',
     standalone: true,
@@ -17,40 +18,15 @@ export class ChatComponent implements OnInit {
 
  /* message: string | undefined;
   messages: string[] = [];
-
-  constructor() { }
 */
+  constructor(private chatService: ChatService) { }
+
   ngOnInit() {
     
   }
 
   messages: Message[] = [
-    {user: "Bot" ,text: "Bonjour , je suis FSTT Chat un chat debier a vous aider"},
-    {user: "User" ,text: "Bonjour , je suis FSTT Chat un chat debier a vous aider"},
-    {user: "Bot" ,text: "Bonjour , je suis FSTT Chat un chat debier a vous aider"},
-    {user: "User" ,text: "Bonjour , je suis FSTT Chat un chat debier a vous aider"},
-    {user: "Bot" ,text: "Bonjour , je suis FSTT Chat un chat debier a vous aider"},
-    {user: "User" ,text: "Bonjour , je suis FSTT Chat un chat debier a vous aider"},
-    {user: "Bot" ,text: "Bonjour , je suis FSTT Chat un chat debier a vous aider"},
-    {user: "User" ,text: "Bonjour , je suis FSTT Chat un chat debier a vous aider"},
-    {user: "Bot" ,text: "Bonjour , je suis FSTT Chat un chat debier a vous aider"},
-    {user: "User" ,text: "Bonjour , je suis FSTT Chat un chat debier a vous aider"},
-    {user: "Bot" ,text: "Bonjour , je suis FSTT Chat un chat debier a vous aider"},
-    {user: "User" ,text: "Bonjour , je suis FSTT Chat un chat debier a vous aider"},
-    {user: "Bot" ,text: "Bonjour , je suis FSTT Chat un chat debier a vous aider"},
-    {user: "User" ,text: "Bonjour , je suis FSTT Chat un chat debier a vous aider"},
-    {user: "Bot" ,text: "Bonjour , je suis FSTT Chat un chat debier a vous aider"},
-    {user: "User" ,text: "Bonjour , je suis FSTT Chat un chat debier a vous aider"},
-    {user: "Bot" ,text: "Bonjour , je suis FSTT Chat un chat debier a vous aider"},
-    {user: "User" ,text: "Bonjour , je suis FSTT Chat un chat debier a vous aider"},
-    {user: "Bot" ,text: "Bonjour , je suis FSTT Chat un chat debier a vous aider"},
-    {user: "User" ,text: "Bonjour , je suis FSTT Chat un chat debier a vous aider"},
-    {user: "Bot" ,text: "Bonjour , je suis FSTT Chat un chat debier a vous aider"},
-    {user: "User" ,text: "Bonjour , je suis FSTT Chat un chat debier a vous aider"},
-    {user: "Bot" ,text: "Bonjour , je suis FSTT Chat un chat debier a vous aider"},
-    {user: "User" ,text: "Bonjour , je suis FSTT Chat un chat debier a vous aider"},
-    {user: "Bot" ,text: "Bonjour , je suis FSTT Chat un chat debier a vous aider"},
-    {user: "User" ,text: "Bonjour , je suis FSTT Chat un chat debier a vous aider"}
+    {user: "Bot" ,text: "Bonjour , je suis FSTT Chat un chat debier a vous aider"}
   ];
   newMessage: string = '';
   username: string = 'User';  // In a real app, this should be dynamically set
@@ -59,6 +35,10 @@ export class ChatComponent implements OnInit {
     if (this.newMessage.trim().length === 0) {
       return;
     }
+    // Send the message to the API
+    this.chatService.sendMessage(this.newMessage).subscribe(botMessage => {
+      this.messages.push(botMessage);
+    });
     this.messages.push({user: 'User', text: this.newMessage});
     this.newMessage = '';
   }
