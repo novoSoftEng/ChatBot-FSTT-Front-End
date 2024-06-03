@@ -12,7 +12,11 @@
       <!-- Navigation Menu Here -->
       <button mat-button routerLink="/" routerLinkActive="active" >Home</button>
       <button mat-button routerLink="/about" routerLinkActive="active" >About</button>
-      <button mat-button>Contact</button>
+      <mat-menu #modelMenu="matMenu">
+        <button mat-menu-item (click)="selectModel('fine-tuned')">Fine-Tuned Model</button>
+        <button mat-menu-item (click)="selectModel('rag')">RAG</button>
+      </mat-menu>
+      <button mat-button [matMenuTriggerFor]="modelMenu">Model</button>
     </div>
 
   </mat-toolbar-row>

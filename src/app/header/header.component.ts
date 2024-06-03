@@ -4,20 +4,25 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { ChatService } from '../chat.service';
+import { LoadingService } from '../loading.service';
+import { MatCommonModule } from '@angular/material/core';
+import {MatMenuModule} from '@angular/material/menu';
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, MatToolbarModule, MatButtonModule, MatIconModule, RouterModule],
+  imports: [CommonModule,MatMenuModule,MatToolbarModule, MatToolbarModule, MatButtonModule, MatIconModule, RouterModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-toggleDropdown() {
-throw new Error('Method not implemented.');
-}
-deleteChat() {
-throw new Error('Method not implemented.');
-}
-dropdownOpen: any;
+  constructor(private loadingService: LoadingService,private chatService : ChatService){}
+  selectModel(model: string) {
+    this.loadingService.loadingOn();
+    this.chatService.loadModel(model).subscribe(() => {
+      this.loadingService.loadingOff();
+    });
+  }
+
 
 }
