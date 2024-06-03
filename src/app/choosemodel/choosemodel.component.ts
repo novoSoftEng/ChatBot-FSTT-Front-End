@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { ChatService } from '../chat.service';
 import { LoadingService } from '../loading.service';
 
@@ -11,11 +11,17 @@ import { LoadingService } from '../loading.service';
   styleUrl: './choosemodel.component.css'
 })
 export class ChoosemodelComponent {
-  constructor(private loadingService: LoadingService,private chatService : ChatService){}
+  constructor(
+    private loadingService: LoadingService,
+    private chatService: ChatService,
+    private router: Router
+  ) {}
+
   selectModel(model: string) {
     this.loadingService.loadingOn();
     this.chatService.loadModel(model).subscribe(() => {
       this.loadingService.loadingOff();
+      this.router.navigate(['/chat']); // Navigate to the chat route with the selected model
     });
   }
 }

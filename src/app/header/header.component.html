@@ -16,7 +16,7 @@
         <button mat-menu-item (click)="selectModel('fine-tuned')">Fine-Tuned Model</button>
         <button mat-menu-item (click)="selectModel('rag')">RAG</button>
       </mat-menu>
-      <button mat-button [matMenuTriggerFor]="modelMenu">Model</button>
+      <button mat-button [matMenuTriggerFor]="modelMenu">{{model}}</button>
     </div>
 
   </mat-toolbar-row>

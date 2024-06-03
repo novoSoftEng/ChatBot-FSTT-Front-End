@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { BehaviorSubject, Observable, map } from 'rxjs';
 import { Message } from './message';
 
 @Injectable({
@@ -9,8 +9,15 @@ import { Message } from './message';
 export class ChatService {
   private apiUrl = 'http://localhost:8500/query'; // Replace with your API URL
   private modelUrl = 'http://localhost:8500/model';
+  private modelSubject = new BehaviorSubject<string>('');
+  model$ = this.modelSubject.asObservable();
+
+  setModel(model: string) {
+    this.modelSubject.next(model);
+  }
   constructor(private http: HttpClient) { }
   loadModel(model: string): Observable<Boolean> {
+    this.setModel(model)
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const body = { model: model };
 

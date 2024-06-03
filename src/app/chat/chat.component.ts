@@ -8,6 +8,7 @@ import { MessageComponent } from "../message/message.component";
 import { MatGridListModule } from '@angular/material/grid-list';
 import { ChatService } from '../chat.service';
 import { SuggestionsComponent } from "../suggestions/suggestions.component";
+import { ActivatedRoute } from '@angular/router';
 @Component({
     selector: 'app-chat',
     standalone: true,
@@ -23,7 +24,6 @@ export class ChatComponent implements OnInit {
   constructor(private chatService: ChatService) { }
 
   ngOnInit() {
-    
   }
 
   messages: Message[] = [

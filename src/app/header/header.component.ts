@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ChatService } from '../chat.service';
 import { LoadingService } from '../loading.service';
@@ -15,8 +15,16 @@ import {MatMenuModule} from '@angular/material/menu';
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
-export class HeaderComponent {
-  constructor(private loadingService: LoadingService,private chatService : ChatService){}
+export class HeaderComponent implements OnInit{
+  @Input() model: string = "";
+  constructor(private loadingService: LoadingService,private chatService : ChatService,private route: ActivatedRoute){}
+  ngOnInit(): void {
+    this.chatService.model$.subscribe(model => {
+      this.model = model;
+      console.log(this.model);
+    });
+  }
+
   selectModel(model: string) {
     this.loadingService.loadingOn();
     this.chatService.loadModel(model).subscribe(() => {
