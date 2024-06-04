@@ -1,4 +1,5 @@
-<div class="chat-container">
+<div class="background-animation">
+ <div class="chat-container">
   <div class="chat-window">
     <div class="message" *ngFor="let message of messages; let i = index">
       <app-message [message]="message"></app-message>
@@ -10,8 +11,8 @@
       <mat-form-field class="example-full-width">
         <mat-label>Ta question...</mat-label>
         <input matInput placeholder="Type your question..." [(ngModel)]="newMessage" (keyup.enter)="sendMessage()" aria-label="Chat input">
-        <button class="input-btn" mat-icon-button matSuffix color="primary" (click)="sendMessage()" aria-label="Send message">
-          <mat-icon color="accent">send</mat-icon>
+        <button class="input-btn" mat-icon-button matSuffix (click)="sendMessage()" aria-label="Send message">
+          <mat-icon>send</mat-icon>
         </button>
       </mat-form-field>
     </div>
@@ -19,7 +20,7 @@
   
 </div>
 
-
+</div>
   
   
   

@@ -29,9 +29,9 @@ export class ChatService {
       );
   }
 
-  sendMessage(message: string): Observable<Message> {
+  sendMessage(message: string,prevRes: string): Observable<Message> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    const body = { prompt: message };
+    const body = { prompt: message , prevRes : prevRes };
 
     return this.http.post<{ response: string }>(this.apiUrl, body, { headers })
       .pipe(

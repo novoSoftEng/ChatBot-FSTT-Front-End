@@ -6,8 +6,11 @@
   overflow-y:auto;
   padding-bottom: 90px; /* Space for the input container */
   
+  
 }
-
+mat-icon{
+  color:cyan;
+}
 .chat-window {
   flex: 1;
   border: 1px #ccc;

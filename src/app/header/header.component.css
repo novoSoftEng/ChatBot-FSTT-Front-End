@@ -1,5 +1,6 @@
 .mat-toolbar {
   position: relative;
+  background-color:rgb(58, 58, 61);
 }
 
 .left-logo, .middle-logo, .right-logo, .navigation {
@@ -10,6 +11,9 @@
 .left-logo img, .middle-logo img, .right-logo img, .navigation button {
   max-height: 60px;
   margin: 0 10px;
+}
+.navigation button {
+ color: aqua;
 }
 
 
